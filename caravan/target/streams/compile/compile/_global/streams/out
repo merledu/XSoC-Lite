@@ -1,0 +1,55 @@
+[0m[[0m[33mwarn[0m] [0m[0m/home/mhussain/Desktop/nucleusrv/caravan/src/main/scala/caravan/bus/common/BusDecoder.scala:47:32: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method getMap,[0m
+[0m[[0m[33mwarn[0m] [0m[0mor remove the empty argument list from its definition (Java-defined methods are exempt).[0m
+[0m[[0m[33mwarn[0m] [0m[0mIn Scala 3, an unapplied method like this will be eta-expanded into a function.[0m
+[0m[[0m[33mwarn[0m] [0m[0m                    addressMap.getMap.toList(i)._1.asUInt,  // if true[0m
+[0m[[0m[33mwarn[0m] [0m[0m                               ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/mhussain/Desktop/nucleusrv/caravan/src/main/scala/caravan/bus/tilelink/TilelinkHost.scala:24:10: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method fire,[0m
+[0m[[0m[33mwarn[0m] [0m[0mor remove the empty argument list from its definition (Java-defined methods are exempt).[0m
+[0m[[0m[33mwarn[0m] [0m[0mIn Scala 3, an unapplied method like this will be eta-expanded into a function.[0m
+[0m[[0m[33mwarn[0m] [0m[0m    when(fire) {[0m
+[0m[[0m[33mwarn[0m] [0m[0m         ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/mhussain/Desktop/nucleusrv/caravan/src/main/scala/caravan/bus/wishbone/WishboneHost.scala:62:8: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method fire,[0m
+[0m[[0m[33mwarn[0m] [0m[0mor remove the empty argument list from its definition (Java-defined methods are exempt).[0m
+[0m[[0m[33mwarn[0m] [0m[0mIn Scala 3, an unapplied method like this will be eta-expanded into a function.[0m
+[0m[[0m[33mwarn[0m] [0m[0m  when(fire) {[0m
+[0m[[0m[33mwarn[0m] [0m[0m       ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/mhussain/Desktop/nucleusrv/caravan/src/main/scala/caravan/bus/common/DummyMemory.scala:34:13: method fire in class AddMethodsToReadyValid is deprecated (since Chisel 3.5): Calling this function with an empty argument list is invalid in Scala 3. Use the form without parentheses instead[0m
+[0m[[0m[33mwarn[0m] [0m[0m    when(io.req.fire() && io.req.bits.isWrite){[0m
+[0m[[0m[33mwarn[0m] [0m[0m            ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/mhussain/Desktop/nucleusrv/caravan/src/main/scala/caravan/bus/common/DummyMemory.scala:41:19: method fire in class AddMethodsToReadyValid is deprecated (since Chisel 3.5): Calling this function with an empty argument list is invalid in Scala 3. Use the form without parentheses instead[0m
+[0m[[0m[33mwarn[0m] [0m[0m    }.elsewhen(io.req.fire() && !io.req.bits.isWrite){[0m
+[0m[[0m[33mwarn[0m] [0m[0m                  ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/mhussain/Desktop/nucleusrv/caravan/src/main/scala/caravan/bus/tilelink/SwitchHarness.scala:51:35: method litValue in class Data is deprecated (since Chisel 3.5): Calling this function with an empty argument list is invalid in Scala 3. Use the form without parentheses instead[0m
+[0m[[0m[33mwarn[0m] [0m[0m    switch.io.devIn(devices(i)._2.litValue().toInt) <> devices(i)._1.asInstanceOf[TilelinkDevice].io.tlSlaveTransmitter[0m
+[0m[[0m[33mwarn[0m] [0m[0m                                  ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/mhussain/Desktop/nucleusrv/caravan/src/main/scala/caravan/bus/tilelink/SwitchHarness.scala:52:36: method litValue in class Data is deprecated (since Chisel 3.5): Calling this function with an empty argument list is invalid in Scala 3. Use the form without parentheses instead[0m
+[0m[[0m[33mwarn[0m] [0m[0m    switch.io.devOut(devices(i)._2.litValue().toInt) <> devices(i)._1.asInstanceOf[TilelinkDevice].io.tlMasterReceiver[0m
+[0m[[0m[33mwarn[0m] [0m[0m                                   ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/mhussain/Desktop/nucleusrv/caravan/src/main/scala/caravan/bus/tilelink/SwitchHarness.scala:111:11: method fire in class AddMethodsToReadyValid is deprecated (since Chisel 3.5): Calling this function with an empty argument list is invalid in Scala 3. Use the form without parentheses instead[0m
+[0m[[0m[33mwarn[0m] [0m[0m  when(io.req.fire() && io.req.bits.isWrite) {[0m
+[0m[[0m[33mwarn[0m] [0m[0m          ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/mhussain/Desktop/nucleusrv/caravan/src/main/scala/caravan/bus/tilelink/SwitchHarness.scala:122:18: method fire in class AddMethodsToReadyValid is deprecated (since Chisel 3.5): Calling this function with an empty argument list is invalid in Scala 3. Use the form without parentheses instead[0m
+[0m[[0m[33mwarn[0m] [0m[0m  } .elsewhen(io.req.fire() && !io.req.bits.isWrite) {[0m
+[0m[[0m[33mwarn[0m] [0m[0m                 ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/mhussain/Desktop/nucleusrv/caravan/src/main/scala/caravan/bus/tilelink/TilelinkErr.scala:25:11: method fire in class AddMethodsToReadyValid is deprecated (since Chisel 3.5): Calling this function with an empty argument list is invalid in Scala 3. Use the form without parentheses instead[0m
+[0m[[0m[33mwarn[0m] [0m[0m  when(io.tlMasterReceiver.fire()) {[0m
+[0m[[0m[33mwarn[0m] [0m[0m          ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/mhussain/Desktop/nucleusrv/caravan/src/main/scala/caravan/bus/tilelink/TilelinkHost.scala:41:78: method copyArrayToImmutableIndexedSeq in class LowPriorityImplicits2 is deprecated (since 2.13.0): Implicit conversions from Array to immutable.IndexedSeq are implemented by copying; Use the more efficient non-copying ArraySeq.unsafeWrapArray or an explicit toIndexedSeq call[0m
+[0m[[0m[33mwarn[0m] [0m[0m        io.tlMasterTransmitter.bits.a_size := MuxLookup(config.w.U, 2.U,Array(                    // default 32-bit[0m
+[0m[[0m[33mwarn[0m] [0m[0m                                                                             ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/mhussain/Desktop/nucleusrv/caravan/src/main/scala/caravan/bus/tilelink/TilelinkHost.scala:64:37: method copyArrayToImmutableIndexedSeq in class LowPriorityImplicits2 is deprecated (since 2.13.0): Implicit conversions from Array to immutable.IndexedSeq are implemented by copying; Use the more efficient non-copying ArraySeq.unsafeWrapArray or an explicit toIndexedSeq call[0m
+[0m[[0m[33mwarn[0m] [0m[0m    respReg := MuxCase(false.B,Array([0m
+[0m[[0m[33mwarn[0m] [0m[0m                                    ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/mhussain/Desktop/nucleusrv/caravan/src/main/scala/caravan/bus/wishbone/Harness.scala:91:35: method litValue in class Data is deprecated (since Chisel 3.5): Calling this function with an empty argument list is invalid in Scala 3. Use the form without parentheses instead[0m
+[0m[[0m[33mwarn[0m] [0m[0m    switch.io.devIn(devices(i)._2.litValue().toInt) <> devices(i)._1.asInstanceOf[WishboneDevice].io.wbSlaveTransmitter[0m
+[0m[[0m[33mwarn[0m] [0m[0m                                  ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/mhussain/Desktop/nucleusrv/caravan/src/main/scala/caravan/bus/wishbone/Harness.scala:92:36: method litValue in class Data is deprecated (since Chisel 3.5): Calling this function with an empty argument list is invalid in Scala 3. Use the form without parentheses instead[0m
+[0m[[0m[33mwarn[0m] [0m[0m    switch.io.devOut(devices(i)._2.litValue().toInt) <> devices(i)._1.asInstanceOf[WishboneDevice].io.wbMasterReceiver[0m
+[0m[[0m[33mwarn[0m] [0m[0m                                   ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/mhussain/Desktop/nucleusrv/caravan/src/main/scala/caravan/bus/wishbone/Harness.scala:193:11: method fire in class AddMethodsToReadyValid is deprecated (since Chisel 3.5): Calling this function with an empty argument list is invalid in Scala 3. Use the form without parentheses instead[0m
+[0m[[0m[33mwarn[0m] [0m[0m  when(io.req.fire() && io.req.bits.isWrite) {[0m
+[0m[[0m[33mwarn[0m] [0m[0m          ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/mhussain/Desktop/nucleusrv/caravan/src/main/scala/caravan/bus/wishbone/Harness.scala:204:18: method fire in class AddMethodsToReadyValid is deprecated (since Chisel 3.5): Calling this function with an empty argument list is invalid in Scala 3. Use the form without parentheses instead[0m
+[0m[[0m[33mwarn[0m] [0m[0m  } .elsewhen(io.req.fire() && !io.req.bits.isWrite) {[0m
+[0m[[0m[33mwarn[0m] [0m[0m                 ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m16 warnings found[0m

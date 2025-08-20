@@ -1,0 +1,17 @@
+[0m[[0m[31merror[0m] [0m[0mchisel3.internal.ChiselException: Connection between sink (MemoryFetch.io.baby_kyber.cio_babykyber_intr_key: IO[Bool]) and source (Bool(false)) failed @: io.baby_kyber.cio_babykyber_intr_key in MemoryFetch cannot be written from module MemoryFetch.[0m
+[0m[[0m[31merror[0m] [0m[0m	at ... ()[0m
+[0m[[0m[31merror[0m] [0m[0m	at nucleusrv.components.MemoryFetch.<init>(MemoryFetch.scala:153)[0m
+[0m[[0m[31merror[0m] [0m[0m	at nucleusrv.components.Core.$anonfun$MEM$2(Core.scala:108)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.Module$.do_apply(Module.scala:53)[0m
+[0m[[0m[31merror[0m] [0m[0m	at nucleusrv.components.Core.$anonfun$MEM$1(Core.scala:108)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.internal.plugin.package$.autoNameRecursively(package.scala:33)[0m
+[0m[[0m[31merror[0m] [0m[0m	at nucleusrv.components.Core.<init>(Core.scala:108)[0m
+[0m[[0m[31merror[0m] [0m[0m	at nucleusrv.components.Top.$anonfun$core$2(Top.scala:27)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.Module$.do_apply(Module.scala:53)[0m
+[0m[[0m[31merror[0m] [0m[0m	at nucleusrv.components.Top.$anonfun$core$1(Top.scala:27)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.internal.plugin.package$.autoNameRecursively(package.scala:33)[0m
+[0m[[0m[31merror[0m] [0m[0m	at nucleusrv.components.Top.<init>(Top.scala:27)[0m
+[0m[[0m[31merror[0m] [0m[0m	at nucleusrv.components.NRVDriver$.$anonfun$main$1(Top.scala:84)[0m
+[0m[[0m[31merror[0m] [0m[0m	at ... ()[0m
+[0m[[0m[31merror[0m] [0m[0m	at ... (Stack trace trimmed to user code only. Rerun with --full-stacktrace to see the full stack trace)[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mrunMain[0m) chisel3.internal.ChiselException: Connection between sink (MemoryFetch.io.baby_kyber.cio_babykyber_intr_key: IO[Bool]) and source (Bool(false)) failed @: io.baby_kyber.cio_babykyber_intr_key in MemoryFetch cannot be written from module MemoryFetch.[0m
