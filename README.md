@@ -1,47 +1,95 @@
-# NucleusRV
-
-[![Join the chat at https://gitter.im/merledu/nucleusrv](https://badges.gitter.im/merledu/nucleusrv.svg)](https://gitter.im/merledu/nucleusrv?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-A chisel based riscv 5-stage pipelined cpu design, implementing 32-bit version of the ISA (incomplete).
 
 
-## Dependencies
+# XSoC-Lite
 
-* [`verilator >= v5.002`](https://verilator.org/guide/latest/install.html): Simulation
-* [`riscv-gnu-toolchain`](https://github.com/riscv/riscv-gnu-toolchain): To build the C program
+**Modular eXtensible SoC (RV32IMCF + BabyKyber Accelerator)**
+
+XSoC-Lite is a hardware development platform for building modular, extensible RISC-V SoCs. It is intended for research, education, and rapid prototyping of RISC-V SoCs, cryptographic accelerators, and bus interconnects.
+
+## Key Features
+
+- **NucleusRV**: 5-stage pipelined RISC-V CPU core (RV32IMCF)
+- **BabyKyber Accelerator**: Hardware accelerator for the BabyKyber post-quantum cryptography algorithm
+- **Caravan**: Library for open-source bus protocols in Chisel
+
+---
 
 
-## Getting Started
+## BabyKyber Accelerator
 
-### Clone
+The **BabyKyber Accelerator** is a hardware module designed to accelerate the post-quantum key encapsulation mechanism (KEM). It aims to:
 
-```sh
-git clone --recurse-submodules https://github.com/merledu/nucleusrv.git
-```
+- Provide quantum-resistant cryptography for embedded and IoT systems
+- Integrate seamlessly with the NucleusRV RISC-V core via standard bus interfaces (Caravan)
+- Serve as a reference for hardware/software co-design of cryptographic accelerators
 
-### Generating SystemVerilog
+**Note:** The BabyKyber accelerator is under active development. See the roadmap and documentation for integration details and usage examples.
 
-```sh
-python3 gen_verilog.py <imem> <dmem>
-```
 
-### Running RISC-V assembly
 
-```sh
-python3 simulate.py --sbt_args "--imem <imem>" nucleusrv.components.NRVDriver Top
-```
+## Projects Overview
 
-### Running RISC-V Architectural Tests
-* Make sure to have the RISC-V GNU Toolchain and Verilator in your `PATH`.
-* Create a python virtual environment and follow the `README.md` in `riscof/riscv-arch-test/`.
-* Run `run_riscv_arch_tests.py` in root directory.
-```sh
-python3 run_riscv_arch_tests.py
-```
+### NucleusRV
 
-### Building C Programs
-* In `tools/tests` directory, create a folder and write c program in the `main.c` file
-* Run `make PROGRAM=<your_newly_created_test_folder_name`> inside tools directory
-* Build the program with `sbt` command listed above. Make sure you are in root directory
+A Chisel-based RISC-V 5-stage pipelined CPU design, implementing the 32-bit version of the ISA (incomplete).
 
-* Optionally, you can skip writing/building c program and directly write hex instructions to `program.hex` file in `tools/out` directory.
+- **Location:** `nucleusrv/`
+- **Key Features:**
+  - Written in Chisel (Scala)
+  - Generates SystemVerilog
+  - Supports RISC-V architectural tests
+  - Example C program integration
+- **Dependencies:**
+  - [Verilator >= v5.002](https://verilator.org/guide/latest/install.html)
+  - [riscv-gnu-toolchain](https://github.com/riscv/riscv-gnu-toolchain)
+- **Quick Start:**
+
+    ```sh
+    git clone --recurse-submodules <this-repo>
+    cd nucleusrv
+    python3 gen_verilog.py <imem> <dmem>
+    python3 simulate.py --sbt_args "--imem <imem>" nucleusrv.components.NRVDriver Top
+    python3 run_riscv_arch_tests.py
+    ```
+    For more, see `nucleusrv/README.md`.
+
+### Caravan
+
+A library for easily creating open-source bus protocols in Chisel-based designs.
+
+- **Location:** `caravan/`
+- **Key Features:**
+  - Wishbone Classic bus protocol (point-to-point)
+  - Designed for FPGA and ASIC flows
+  - Example Chisel integration provided
+- **Documentation:** [caravan.readthedocs.io](https://caravan.readthedocs.io/en/latest/index.html)
+- **Quick Example:**
+
+    ```scala
+    class ParentModule(implicit val config: WishboneConfig) extends Module {
+      val io = IO(new Bundle{})
+      val wbHost = Module(new WishboneHost())
+      val wbSlave = Module(new WishboneDevice())
+      wbHost.io.wbMasterTransmitter <> wbSlave.io.wbMasterReceiver
+      wbSlave.io.wbSlaveTransmitter <> wbHost.io.wbSlaveReceiver
+    }
+    ```
+    For more, see `caravan/README.md`.
+
+---
+
+
+## Repository Structure
+
+- `nucleusrv/` — RISC-V CPU core and related tools
+- `caravan/` — Bus protocol library and documentation
+- `mem_data/`, `tools/`, `imperas-riscv-tests/` — Supporting data, scripts, and test suites
+
+## Contributing
+
+- Issues and pull requests are welcome for both subprojects.
+- See each subproject's `README.md` for contribution guidelines and community links.
+
+## License
+
+See individual subproject folders for license details.
