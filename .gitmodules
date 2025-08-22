@@ -2,5 +2,5 @@
 	path = nucleusrv
 	url = https://github.com/Muhammadussain/nucleusrv.git
 [submodule "caravan"]
-	path = caravan
+	path = nucleusrv/caravan
 	url = https://github.com/merledu/caravan.git
