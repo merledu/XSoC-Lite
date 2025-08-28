@@ -1,6 +1,6 @@
-[submodule "nucleusrv"]
-	path = nucleusrv
-	url = https://github.com/Muhammadussain/nucleusrv.git
 [submodule "caravan"]
-	path = nucleusrv/caravan
+	path = caravan
 	url = https://github.com/merledu/caravan.git
+[submodule "babykyber"]
+	path = babykyber
+	url = https://github.com/Muhammadussain/BabyKyberAcceleratorCHISEL.git
