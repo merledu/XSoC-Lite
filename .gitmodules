@@ -4,3 +4,6 @@
 [submodule "babykyber"]
 	path = babykyber
 	url = https://github.com/Muhammadussain/BabyKyberAcceleratorCHISEL.git
+[submodule "nucleusrv"]
+	path = nucleusrv
+	url = https://github.com/Muhammadussain/nucleusrv.git
