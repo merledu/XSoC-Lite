@@ -1,9 +1,9 @@
-[submodule "babykyber"]
-	path = babykyber
-	url = https://github.com/Muhammadussain/BabyKyberAcceleratorCHISEL.git
 [submodule "nucleusrv"]
 	path = nucleusrv
 	url = https://github.com/Muhammadussain/nucleusrv.git
 [submodule "caravan"]
 	path = caravan
 	url = https://github.com/Muhammadussain/caravan.git
+[submodule "BabyKyberAcceleratorCHISEL"]
+	path = BabyKyberAcceleratorCHISEL
+	url = https://github.com/Muhammadussain/BabyKyberAcceleratorCHISEL.git
