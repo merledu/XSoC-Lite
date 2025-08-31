@@ -1,22 +1,27 @@
-// See README.md for license details.
-
-ThisBuild / scalaVersion := "2.12.12"
+// Root build.sbt for unified multi-project build
+// Hard-coded versions as per user request
+ThisBuild / scalaVersion := "2.13.10"
 ThisBuild / version := "0.1.0"
-ThisBuild / organization := "com.github.merl"
+ThisBuild / scalacOptions ++= Seq(
+  "-Xsource:2.13",
+  "-language:reflectiveCalls",
+  "-deprecation",
+  "-feature",
+  "-Xcheckinit",
+  "-P:chiselplugin:useBundlePlugin"
+)
 
-val chiselVersion = "3.5.5"
-
-lazy val root = (project in file("."))
-  .settings(
-    name := "xsoc-lite",
-    libraryDependencies ++= Seq(
-      "edu.berkeley.cs" %% "chisel3" % chiselVersion,
-      "edu.berkeley.cs" %% "chiseltest" % "0.5.6" % "test"
-    ),
-    addCompilerPlugin("edu.berkeley.cs" % "chisel3-plugin" % chiselVersion cross CrossVersion.full)
-  )
-  .dependsOn(caravan, nucleusrv, babykyber)
-
+// Define caravan as a subproject
 lazy val caravan = project in file("caravan")
-lazy val nucleusrv = project in file("nucleusrv")
-lazy val babykyber = project in file("babykyber")
+
+// Define hardfloat as a subproject (used by nucleusrv)
+lazy val hardfloat = project in file("nucleusrv/berkeley-hardfloat")
+
+// Define BabyKyberAcceleratorCHISEL as a subproject that depends on caravan
+lazy val babyKyber = (project in file("BabyKyberAcceleratorCHISEL")).dependsOn(caravan)
+
+// Define nucleusrv as a subproject that depends on caravan, babyKyber, and hardfloat
+lazy val nucleusrv = (project in file("nucleusrv")).dependsOn(caravan, babyKyber, hardfloat)
+
+// Aggregate all subprojects
+lazy val root = (project in file(".")).aggregate(caravan, babyKyber, nucleusrv, hardfloat)
