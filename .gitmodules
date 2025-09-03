@@ -7,3 +7,6 @@
 [submodule "BabyKyberAcceleratorCHISEL"]
 	path = BabyKyberAcceleratorCHISEL
 	url = https://github.com/Muhammadussain/BabyKyberAcceleratorCHISEL.git
+[submodule "XSoC-SDK"]
+	path = XSoC-SDK
+	url = https://github.com/Muhammadussain/XSoC-SDK.git
