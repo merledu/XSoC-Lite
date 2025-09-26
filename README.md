@@ -8,7 +8,7 @@ XSoC-Lite provides an open-source, modular RISC-V SoC platform designed for rapi
 
 ## 🚀 Features
 
-- **RISC-V ISA**: 32-bit RISC-V implementation with IMCF extensions
+- **RISC-V ISA**: 64-bit RISC-V implementation with IMCF extensions
 - **NucleusRV Core**: 5-stage pipelined processor design
 - **BabyKyber Accelerator**: Post-quantum cryptography hardware acceleration
 - **Caravan Bus Library**: Open-source bus protocol support in Chisel
@@ -20,7 +20,7 @@ XSoC-Lite provides an open-source, modular RISC-V SoC platform designed for rapi
 ## 🎯 Scope
 
 ### Processor Core
-- **Base ISA**: RISC-V 32-bit Integer (RV32I) instruction set
+- **Base ISA**: RISC-V 64-bit Integer (RV64I) instruction set
 - **Extensions**: Multiplication (M), Floating-Point (F), Compressed (C) support
 - **Pipeline**: 5-stage implementation for efficient execution
 
@@ -43,7 +43,7 @@ XSoC-Lite is a comprehensive hardware development platform designed for research
 
 ### Key Components
 
-- **NucleusRV**: 5-stage pipelined RISC-V CPU core (RV32IMCF)
+- **NucleusRV**: 5-stage pipelined RISC-V CPU core (RV64IMCF)
 - **BabyKyber Accelerator**: Hardware accelerator for post-quantum cryptography
 - **Caravan**: Open-source bus protocol library in Chisel
 - **XSoC-SDK**: Complete software development kit for bare-metal programming
@@ -69,7 +69,7 @@ sudo apt-get install python3 python3-pip
 
 ### Verification
 ```bash
-riscv32-unknown-elf-gcc --version
+riscv64-unknown-elf-gcc --version
 verilator --version
 sbt --version
 python3 --version
@@ -93,41 +93,44 @@ cd XSoC-Lite
 The easiest way to get started is running the default simulation:
 
 ```bash
-python3 simulate.py
+python3 xsoc_simulate.py
 ```
 
 This will automatically run the default BabyKyber program from XSoC-SDK.
 
 ![Simulation Output](simulation.jpeg)
 
-### Running Custom Programs
 
-#### Option 1: Using Built-in Test Programs
-```bash
-# Run Fibonacci program
-python3 simulate.py nucleusrv/tools/tests/fibonacci/main.c
-
-# Run Hello World program  
-python3 simulate.py nucleusrv/tools/tests/hello_world/main.c
-```
 
 ## 📁 Project Structure
 
 ```
 XSoC-Lite/
-├── nucleusrv/                 # RISC-V CPU core
-│   ├── src/                   # Chisel source files
-│   ├── tools/                 # Development tools
-│   │   └── tests/            # Test programs
-│   │       ├── fibonacci/    # Fibonacci test
-│   │       └── hello_world/  # Hello world test
-│   └── simulate.py           # Main simulation script
+├── build.sbt                 # Root Scala build configuration
+├── README.md                 # Project documentation
+├── xsoc_simulate.py          # XSoC simulation script
+├── xsoc_tb.cpp               # XSoC testbench
+├── nucleusrv/                # RISC-V CPU core
+│   ├── src/                  # Chisel source files
+│   ├── tools/                # Development tools and test 
+│   ├── berkeley-hardfloat/   # Hardfloat library submodule
+│   ├── docs/                 # Documentation
+│   └── simulate.py           # Simulation script
 ├── BabyKyberAcceleratorCHISEL/ # Post-quantum crypto accelerator
-├── caravan/                   # Bus protocol library
-├── XSoC-SDK/                  # Software development kit
-│   └── src/                   # SDK source files
-├── simulate.py               # Repository-level simulation wrapper
-└── build.sbt                # Scala build configuration
+│   ├── src/                  # Chisel source files
+│   └── build.sbt             # Build configuration
+├── caravan/                  # Bus protocol library
+│   ├── src/                  # Chisel source files
+│   └── docs/                 # Documentation
+├── XSoC-SDK/                 # Software development kit
+│   ├── examples/             # Example programs
+│   ├── include/              # Header files
+│   └── src/                  # SDK source files
+├── output/                   # Generated output files
+├── project/                  # SBT project files
+├── src/                      # Additional source files
+├── target/                   # Build artifacts
+└── test_run_dir/             # Test execution directory
 ```
 
 ![Project Structure](images/project_structure.png)
