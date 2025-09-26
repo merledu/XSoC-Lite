@@ -7,8 +7,7 @@ ThisBuild / scalacOptions ++= Seq(
   "-language:reflectiveCalls",
   "-deprecation",
   "-feature",
-  "-Xcheckinit",
-  "-P:chiselplugin:useBundlePlugin"
+  "-Xcheckinit"
 )
 
 // Define caravan as a subproject
@@ -23,5 +22,14 @@ lazy val babyKyber = (project in file("BabyKyberAcceleratorCHISEL")).dependsOn(c
 // Define nucleusrv as a subproject that depends on caravan, babyKyber, and hardfloat
 lazy val nucleusrv = (project in file("nucleusrv")).dependsOn(caravan, babyKyber, hardfloat)
 
-// Aggregate all subprojects
-lazy val root = (project in file(".")).aggregate(caravan, babyKyber, nucleusrv, hardfloat)
+// Root project with Chisel dependencies for XSoC
+lazy val root = (project in file("."))
+  .dependsOn(caravan, babyKyber, nucleusrv)
+  .aggregate(caravan, babyKyber, nucleusrv, hardfloat)
+  .settings(
+    libraryDependencies ++= Seq(
+      "edu.berkeley.cs" %% "chisel3" % "3.5.6",
+      "edu.berkeley.cs" %% "chiseltest" % "0.5.6" % "test"
+    ),
+    addCompilerPlugin("edu.berkeley.cs" % "chisel3-plugin" % "3.5.6" cross CrossVersion.full)
+  )

@@ -12,8 +12,8 @@ from subprocess import run
 
 def main():
     if len(sys.argv) == 1:
-        # No arguments: default to running babykyber.c from XSoC-SDK
-        default_prog = "XSoC-SDK/src/babykyber.c"
+        # No arguments: default to running kyber_demo.c from XSoC-SDK
+        default_prog = "XSoC-SDK/examples/kyber_demo.c"
         print(f"[simulate.py] No arguments given. Running default: {default_prog}")
         print("(To run a different test, pass a path as argument or run nucleusrv/simulate.py directly.)")
         cmd = ["python3", "nucleusrv/simulate.py", default_prog]
