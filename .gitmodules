@@ -1,6 +1,7 @@
 [submodule "nucleusrv"]
 	path = nucleusrv
 	url = https://github.com/Muhammadussain/nucleusrv.git
+	branch = baby-kyber-integration
 [submodule "caravan"]
 	path = caravan
 	url = https://github.com/Muhammadussain/caravan.git
