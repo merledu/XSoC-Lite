@@ -11,3 +11,6 @@
 [submodule "XSoC-SDK"]
 	path = XSoC-SDK
 	url = https://github.com/Muhammadussain/XSoC-SDK.git
+[submodule "jigsaw"]
+	path = jigsaw
+	url = https://github.com/talha-ahmed-1/jigsaw

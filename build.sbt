@@ -16,16 +16,19 @@ lazy val caravan = project in file("caravan")
 // Define hardfloat as a subproject (used by nucleusrv)
 lazy val hardfloat = project in file("nucleusrv/berkeley-hardfloat")
 
-// Define BabyKyberAcceleratorCHISEL as a subproject that depends on caravan
-lazy val babyKyber = (project in file("BabyKyberAcceleratorCHISEL")).dependsOn(caravan)
+// Define jigsaw as a subproject that depends on caravan
+lazy val jigsaw = (project in file("jigsaw")).dependsOn(caravan)
 
-// Define nucleusrv as a subproject that depends on caravan, babyKyber, and hardfloat
-lazy val nucleusrv = (project in file("nucleusrv")).dependsOn(caravan, babyKyber, hardfloat)
+// Define BabyKyberAcceleratorCHISEL as a standalone subproject
+lazy val babyKyber = project in file("BabyKyberAcceleratorCHISEL")
+
+// Define nucleusrv as a subproject that depends only on hardfloat
+lazy val nucleusrvCore = (project in file("nucleusrv")).dependsOn(hardfloat)
 
 // Root project with Chisel dependencies for XSoC
 lazy val root = (project in file("."))
-  .dependsOn(caravan, babyKyber, nucleusrv)
-  .aggregate(caravan, babyKyber, nucleusrv, hardfloat)
+  .dependsOn(caravan, jigsaw, babyKyber, nucleusrvCore)
+  .aggregate(caravan, jigsaw, babyKyber, nucleusrvCore, hardfloat)
   .settings(
     libraryDependencies ++= Seq(
       "edu.berkeley.cs" %% "chisel3" % "3.5.6",
