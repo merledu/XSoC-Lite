@@ -5,6 +5,7 @@ import caravan.bus.wishbone.{WishboneConfig, WishboneHost, WishboneDevice}
 import nucleusrv.components.Top
 import nucleusrv.tracer.TracerO
 import BabyKyber.BabyKyberTop
+import jigsaw.peripherals.UART.UartTOP
 
 class XSoC(programFile:Option[String], dataFile:Option[String])(implicit val wbConfig: WishboneConfig) extends Module {
   val io = IO(new Bundle {
@@ -21,6 +22,9 @@ class XSoC(programFile:Option[String], dataFile:Option[String])(implicit val wbC
 
   // Instantiate BabyKyberTop directly
   val babyKyber = Module(new BabyKyberTop())
+
+  // Instantiate UART
+  val uart = Module(new UartTOP())
 
   // Connect core to host adapter
   // Since both are Decoupled, manual connection
@@ -49,6 +53,35 @@ class XSoC(programFile:Option[String], dataFile:Option[String])(implicit val wbC
   core.io.baby_kyber.cio_babykyber_intr_key := babyKyber.io.cio_babykyber_intr_key
   core.io.baby_kyber.cio_babykyber_intr_encrypt := babyKyber.io.cio_babykyber_intr_encrypt
   core.io.baby_kyber.cio_babykyber_intr_decrypt := babyKyber.io.cio_babykyber_intr_decrypt
+
+  // Connect UART using adapter pattern
+  val uartHostAdapter = Module(new WishboneHost())
+  val uartDeviceAdapter = Module(new WishboneDevice())
+
+  // Connect core UART to adapter
+  uartHostAdapter.io.reqIn <> core.io.uart.req
+  core.io.uart.rsp <> uartHostAdapter.io.rspOut
+
+  // Connect adapters
+  uartHostAdapter.io.wbMasterTransmitter <> uartDeviceAdapter.io.wbMasterReceiver
+  uartDeviceAdapter.io.wbSlaveTransmitter <> uartHostAdapter.io.wbSlaveReceiver
+
+  // Convert UartTOP signals to req/rsp
+  uart.io.ren := uartDeviceAdapter.io.reqOut.valid && !uartDeviceAdapter.io.reqOut.bits.isWrite
+  uart.io.we := uartDeviceAdapter.io.reqOut.valid && uartDeviceAdapter.io.reqOut.bits.isWrite
+  uart.io.wdata := uartDeviceAdapter.io.reqOut.bits.dataRequest
+  uart.io.addr := uartDeviceAdapter.io.reqOut.bits.addrRequest(7,0)
+  uart.io.rx_i := false.B  // External input
+
+  // Response handling
+  uartDeviceAdapter.io.rspIn.valid := true.B  // Always ready
+  uartDeviceAdapter.io.rspIn.bits.dataResponse := uart.io.rdata
+  uartDeviceAdapter.io.rspIn.bits.error := false.B
+  uartDeviceAdapter.io.reqOut.ready := true.B  // Always ready
+
+  // UART external signals (tie off for now)
+  core.io.uart.cio_uart_rx_i := false.B
+  // TX output available as uart.io.tx_o but not connected to top-level
 
   // Connect outputs
   io.pin := core.io.pin

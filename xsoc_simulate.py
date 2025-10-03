@@ -58,8 +58,8 @@ if __name__ == '__main__':
     
     # Copy generated hex files from SDK out directory
     sdk_out_dir = join(sdk_dir, 'out')
-    imem_hex = join(sdk_out_dir, 'babykyber_imem.hex')
-    dmem_hex = join(sdk_out_dir, 'babykyber_dmem.hex')
+    imem_hex = join(sdk_out_dir, 'imem.hex')
+    dmem_hex = join(sdk_out_dir, 'dmem.hex')
     
     if not isfile(imem_hex) or not isfile(dmem_hex):
         raise FileNotFoundError("Hex files not found in XSoC-SDK/out/")
@@ -69,8 +69,8 @@ if __name__ == '__main__':
     copy(dmem_hex, join(target_dir, 'dmem.hex'))
     
     # Copy ELF and objdump for reference
-    copy(join(sdk_out_dir, 'babykyber.elf'), join(target_dir, prog_name.split('.')[0]))
-    copy(join(sdk_out_dir, 'babykyber.objdump'), join(target_dir, prog_name.split('.')[0] + '.objdump'))
+    copy(join(sdk_out_dir, 'kyber_demo'), join(target_dir, prog_name.split('.')[0]))
+    copy(join(sdk_out_dir, 'kyber_demo.objdump'), join(target_dir, prog_name.split('.')[0] + '.objdump'))
     # Invoke sbt to generate Verilog for XSoC
     sbt_cmd = (
         f"sbt 'runMain XSoC.XSoCDriver --imem {join(target_dir, 'imem.hex')} --dmem {join(target_dir, 'dmem.hex')} --target-dir {target_dir}'"
